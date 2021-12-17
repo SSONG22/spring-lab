@@ -1,7 +1,11 @@
 package songi.lab.spring.toby.chap1;
 
+import songi.lab.spring.toby.chap5.Level;
+
 public class User {
-    String id, pw;
+    private String id, pw;
+
+    private Level level;
 
     public String getId() {
         return id;
@@ -17,5 +21,9 @@ public class User {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 }
