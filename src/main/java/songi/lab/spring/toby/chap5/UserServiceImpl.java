@@ -1,27 +1,32 @@
 package songi.lab.spring.toby.chap5;
 
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 import songi.lab.spring.toby.chap1.User;
-import songi.lab.spring.toby.chap1.dao.UserDao;
+import songi.lab.spring.toby.chap7.UserDao;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceImpl {
+@Service("userService")
+public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserDao userDao;
+
     private PlatformTransactionManager transactionManager;
 
     public void setTransactionManager(PlatformTransactionManager transactionManager) {
         this.transactionManager = transactionManager;
+    }
+
+    @Override
+    public void add(User user) {
+
     }
 
     public void upgradeLevels() throws SQLException {
@@ -51,4 +56,7 @@ public class UserServiceImpl {
         return user.getLevel() != Level.COLD;
     }
 
+    public void setUserDao(songi.lab.spring.toby.chap7.UserDao userDao) {
+        this.userDao = userDao;
+    }
 }
